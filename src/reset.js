@@ -125,4 +125,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+body {
+    background-color: #2ec4b6;
+}
+
 `;
