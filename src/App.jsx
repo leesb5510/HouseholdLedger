@@ -1,37 +1,33 @@
-import styled from "styled-components";
-import MonthFilterForm from "./components/MonthFilterForm";
-import PostList from "./components/PostList";
-import WriteForm from "./components/WriteForm";
+// import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Detail from "./pages/Detail/Detail";
+import Home from "./pages/Home/Home";
 
 function App() {
+  // const [posts, setPosts] = useState();
+
+  // 항목 - 글
+  // 글 복수에요 단수에요?
+  // 글이라는 것 자체는 데이터가 뭐가 있어요? 날짜 / 항목 / 금액 / 내용 이 들어가있겠죠
+  // {날짜: 날짜값, 항목: 항목값, 금액: 금액값, 내용: 내용값}
+  // 글 복수
+  // 글을 복수로 저장할때는? 여러개를 저장하고 싶으면?
+
+  // 사물함
+  // 하나만 있으면 구분해서 넣지 않아도 돼요
+  // {}, {}, {}, {}, {} 바구니만 여러개 분리한거니까요
+  // [{}, {}, {}, {}, {}]
+
+  // posts = [{날짜: 날짜값, 항목: 항목값..}];
+
   return (
-    <Main>
-      <Section>
-        <WriteForm />
-      </Section>
-      <Section>
-        <MonthFilterForm />
-      </Section>
-      <Section>
-        <PostList />
-      </Section>
-    </Main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/detail/:id" element={<Detail />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-const Main = styled.main`
-  max-width: 800px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin: 0px auto;
-`;
-
-const Section = styled.section`
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 20px;
-`;
 
 export default App;
