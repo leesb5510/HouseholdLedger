@@ -1,32 +1,61 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Detail = () => {
+  const navigate = useNavigate();
+  const [date, setDate] = useState(expense.date);
+  const [item, setItem] = useState(expense.item);
+  const [amount, setAmount] = useState(expense.amount);
+  const [description, setDescription] = useState(expense.description);
+
   return (
     <Root>
       <InputHolder>
         <InputCard>
-          <Label for="date">날짜</Label>
-          <Input type="text" id="date" placeholder="YYYY-MM-DD"></Input>
+          <Label htmlFor="date">날짜</Label>
+          <Input
+            type="text"
+            id="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            placeholder="YYYY-MM-DD"
+          ></Input>
         </InputCard>
         <InputCard>
-          <Label for="item">항목</Label>
-          <Input type="text" id="item" placeholder="지출항목"></Input>
+          <Label htmlFor="item">항목</Label>
+          <Input
+            type="text"
+            id="item"
+            value={item}
+            onChange={(e) => setItem(e.target.value)}
+            placeholder="지출 항목"
+          ></Input>
         </InputCard>
         <InputCard>
-          <Label for="amount">금액</Label>
-          <Input type="number" id="amount" placeholder="지출금액"></Input>
+          <Label htmlFor="amount">금액</Label>
+          <Input
+            type="number"
+            id="amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="지출 금액"
+          ></Input>
         </InputCard>
         <InputCard>
-          <Label for="description">내용</Label>
-          <Input type="text" id="description" placeholder="지출내용"></Input>
+          <Label htmlFor="description">내용</Label>
+          <Input
+            type="text"
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="지출 내용"
+          ></Input>
         </InputCard>
         <BtnHolder>
           <Button1>수정</Button1>
-          <Button2>삭제</Button2>
-          <Button3>
-            <Link to="/">뒤로가기</Link>
-          </Button3>
+          <Button2 danger>삭제</Button2>
+          <Button3 onClick={() => navigate(-1)}>뒤로가기</Button3>
         </BtnHolder>
       </InputHolder>
     </Root>

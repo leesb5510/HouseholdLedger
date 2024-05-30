@@ -1,30 +1,32 @@
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Section } from "./../pages/Home/Home";
 
-const PostList = () => {
+const PostList = ({ expenses }) => {
+  const navigate = useNavigate();
+
   return (
-    <PostContainer>
-      <Card>
-        <Div>
-          <Span>2024-02-02</Span>
-          <Span>식비 - 회식</Span>
-        </Div>
-        <Span> 50,000원</Span>
-      </Card>
-      <Card>
-        <Div>
-          <Span>2023-02-02</Span>
-          <Span>간식 - 아이스크림</Span>
-        </Div>
-        <Span>500원</Span>
-      </Card>
-      <Card>
-        <Div>
-          <Span>2024-02-02</Span>
-          <Span>여행 - 일본여행</Span>
-        </Div>
-        <Span> 1,055,000원</Span>
-      </Card>
-    </PostContainer>
+    <Section>
+      <PostContainer>
+        {expenses.map((expense) => {
+          return (
+            <Card
+              key={expense.id}
+              onClick={() => {
+                navigate("/Detail");
+              }}
+            >
+              <Div>
+                <Span>{expense.date}</Span>
+                <Span>{`${expense.item} - ${expense.description}`}</Span>
+              </Div>
+              <Span>{expense.amount.toLocaleString()} 원</Span>
+            </Card>
+          );
+        })}
+      </PostContainer>
+    </Section>
   );
 };
 
@@ -74,5 +76,9 @@ const Span = styled.span`
     max-width: 100%;
   }
 `;
+
+PostList.propsTypes = {
+  expenses: PropTypes.node.isRequired,
+};
 
 export default PostList;
