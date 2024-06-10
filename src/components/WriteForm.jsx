@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
-const WriteForm = (month, expenses, setExpenses) => {
+const WriteForm = ({ month, expenses, setExpenses }) => {
   // 여기서 하는지?
   // 여기에 저장하고 싶은 데이터도 있고
   // 여기에 클릭할때 실행시킬 버튼 위치가 있으니까요

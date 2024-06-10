@@ -14,7 +14,7 @@ const PostList = ({ expenses }) => {
             <Card
               key={expense.id}
               onClick={() => {
-                navigate("/Detail");
+                navigate(`/detail/${expense.id}`);
               }}
             >
               <Div>

@@ -1,13 +1,27 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 
-const Detail = () => {
+const Detail = ({ expenses, setExpenses }) => {
   const navigate = useNavigate();
+  const params = useParams();
+  const expense = expenses.find((expense) => expense.id === params.id) || {};
   const [date, setDate] = useState(expense.date);
   const [item, setItem] = useState(expense.item);
   const [amount, setAmount] = useState(expense.amount);
   const [description, setDescription] = useState(expense.description);
+
+  const handleDelete = (expenseId) => {
+    navigate(-1);
+    setExpenses(
+      expenses.filter((item) => {
+        item.id !== expenseId;
+      })
+    );
+  };
+
+  console.log(expense);
 
   return (
     <Root>
@@ -54,7 +68,7 @@ const Detail = () => {
         </InputCard>
         <BtnHolder>
           <Button1>수정</Button1>
-          <Button2 danger>삭제</Button2>
+          <Button2 onClick={() => handleDelete(expense.id)}>삭제</Button2>
           <Button3 onClick={() => navigate(-1)}>뒤로가기</Button3>
         </BtnHolder>
       </InputHolder>

@@ -39,7 +39,10 @@ function App() {
           path="/"
           element={<Home expenses={expenses} setExpenses={setExpenses} />}
         />
-        <Route path="/detail" element={<Detail />} />
+        <Route
+          path="/detail/:id"
+          element={<Detail expenses={expenses} setExpenses={setExpenses} />}
+        />
       </Routes>
     </BrowserRouter>
   );
