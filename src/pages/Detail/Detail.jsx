@@ -12,11 +12,21 @@ const Detail = ({ expenses, setExpenses }) => {
   const [amount, setAmount] = useState(expense.amount);
   const [description, setDescription] = useState(expense.description);
 
+  const handleEdit = () => {
+    setExpenses(
+      expenses.map((data) => {
+        return data.id === expense.id
+          ? { ...data, date, item, amount, description }
+          : data;
+      })
+    );
+  };
+
   const handleDelete = (expenseId) => {
     navigate(-1);
     setExpenses(
-      expenses.filter((item) => {
-        item.id !== expenseId;
+      expenses.filter((data) => {
+        data.id !== expenseId;
       })
     );
   };
@@ -67,7 +77,7 @@ const Detail = ({ expenses, setExpenses }) => {
           ></Input>
         </InputCard>
         <BtnHolder>
-          <Button1>수정</Button1>
+          <Button1 onClick={handleEdit}>수정</Button1>
           <Button2 onClick={() => handleDelete(expense.id)}>삭제</Button2>
           <Button3 onClick={() => navigate(-1)}>뒤로가기</Button3>
         </BtnHolder>
