@@ -26,7 +26,7 @@ const Detail = ({ expenses, setExpenses }) => {
     navigate(-1);
     setExpenses(
       expenses.filter((data) => {
-        data.id !== expenseId;
+        return data.id !== expenseId;
       })
     );
   };
